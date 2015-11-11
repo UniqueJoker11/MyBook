@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<daos>
+	<dao name="BkUserDao" package="colin.profile.opensource.system.core.dao"
+		extendClass="PagingAndSortingRepository" entityClass="BkUserEntity"
+		pkType="String" hasCreate="false">
+	</dao>
+</daos>

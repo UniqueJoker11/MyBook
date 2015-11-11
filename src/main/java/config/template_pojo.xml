@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pojos>
+	<!-- 用户表 -->
+	<pojo name="BkUserEntity" tablename="bk_user" hasCreate="false"
+		package="colin.profile.opensource.system.core.pojo">
+		<field name="user_id" isPk="true" type="String" length="50"
+			comment="用户id" />
+		<field name="user_name" type="String" length="40" comment="用户名" />
+		<field name="user_head" type="String" length="100" comment="用户头像" />
+		<field name="user_password" type="String" length="50" comment="用户密码" />
+		<field name="user_pw_salt" type="String" length="50" comment="用户加密盐" />
+		<field name="user_callname" type="String" length="50" comment="用户别称" />
+		<field name="user_email" type="String" length="100" comment="用户email" />
+		<field name="user_phone" type="String" length="20" comment="用户手机" />
+		<field name="user_createtime" type="String" length="20" comment="用户创建时间" />
+		<field name="user_logintime" type="String" length="25" comment="用户登录时间" />
+	</pojo>
+	<!-- 用户角色表 -->
+	<pojo name="BkRoleEntity" tablename="bk_role" hasCreate="false"
+		package="colin.profile.opensource.system.core.pojo">
+		<field name="role_id" isPk="true" type="String" length="50"
+			comment="角色id" />
+		<field name="parent_role_id" type="String" length="40" comment="角色父级id" />
+		<field name="createdate" type="String" length="100" comment="创建日期" />
+		<field name="role_description" type="String" length="50"
+			comment="角色描述" />
+		<field name="role_name" type="String" length="100" comment="角色名称" />
+	</pojo>
+	<!-- 用户角色表 -->
+	<pojo name="BkUserRoleEntity" tablename="bk_user_role" hasCreate="false"
+		package="colin.profile.opensource.system.core.pojo">
+		<field name="user_role_id" isPk="true" type="String" length="50"
+			comment="用户角色id" />
+		<field name="role_id" type="String" length="50" comment="角色id" />
+		<field name="user_id" type="String" length="50" comment="用户id" />
+	</pojo>
+	<!-- 权限表 -->
+	<pojo name="BkAuthorityEntity" tablename="bk_authority" hasCreate="false"
+		package="colin.profile.opensource.system.core.pojo">
+		<field name="authority_id" isPk="true" type="String" length="50"
+			comment="权限id" />
+		<field name="parent_authority_id" type="String" length="40"
+			comment="权限父级id" />
+		<field name="createdate" type="String" length="100" comment="创建日期" />
+		<field name="authority_description" type="String" length="50"
+			comment="权限描述" />
+		<field name="authority_name" type="String" length="100" comment="权限名称" />
+	</pojo>
+	<!-- 角色权限表 -->
+	<pojo name="BkUserAuthorityEntity" tablename="bk_user_authority"
+		hasCreate="false" package="colin.profile.opensource.system.core.pojo">
+		<field name="role_authority_id" isPk="true" type="String"
+			length="50" comment="用户权限id" />
+		<field name="role_id" type="String" length="50" comment="角色id" />
+		<field name="authority_id" type="String" length="50" comment="权限id" />
+		<field name="authority_type" type="String" length="50" comment="权限类型"></field>
+		<field name="is_access" type="int" length="11" comment="允许访问" />
+		<field name="is_authorization" type="int" length="11" comment="是否授权" />
+	</pojo>
+</pojos>

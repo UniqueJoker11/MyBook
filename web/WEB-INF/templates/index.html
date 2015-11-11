@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<%include("./common/header.html"){}%>
+<title>百洋钱包首页</title>
+</head>
+<body>
+	<header class="am-topbar am-topbar-inverse">
+		<h1 class="am-topbar-brand">
+			<a href="#" class="am-u-sm-offset-1">百洋钱包</a>
+		</h1>
+
+		<button
+			class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+			data-am-collapse="{target: '#doc-topbar-collapse'}">
+			<span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span>
+		</button>
+
+		<div
+			class="am-collapse am-topbar-collapse"
+			id="doc-topbar-collapse">
+
+			<div class="am-topbar-right">
+				<ul class="am-nav am-nav-pills am-topbar-nav">
+					<li><a
+						href="#wallet_userinfo"
+						class="am-text-sm"
+						data-am-offcanvas>欢迎你：测试账号</a></li>
+					<li><a
+						href="#"
+						class="am-text-sm"><span class="am-icon-unlock-alt"></span>&nbsp;安全中心</a></li>
+					<li><a
+						href="#"
+						class="am-text-sm"><span class="am-icon-archive"></span>&nbsp;会员保障</a></li>
+					<li
+						class="am-dropdown"
+						data-am-dropdown><a
+						class="am-dropdown-toggle am-text-sm"
+						data-am-dropdown-toggle
+						href="javascript:;"> <span class="am-icon-bell-o">&nbsp;客户服务
+						</span>&nbsp;<span class="am-icon-caret-down"></span>
+					</a>
+						<ul class="am-dropdown-content">
+							<li><a
+								href="#"
+								class="am-text-sm am-text-center"><span
+									class="am-icon-bookmark-o"></span>&nbsp;服务大厅</a></li>
+							<li class="am-divider"></li>
+							<li><a
+								href="#"
+								class="am-text-sm am-text-center"><span
+									class="am-icon-bookmark-o"></span>&nbsp;自助服务</a></li>
+							<li class="am-divider"></li>
+							<li><a
+								href="#"
+								class="am-text-sm am-text-center"><span
+									class="am-icon-bookmark-o"></span>&nbsp;服务保障</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- 页面主体内容 -->
+	<div class="am-container-fixed">
+
+		<div class="am-g">
+			<div class="am-u-md-3">
+				<div class="am-panel am-panel-default">
+				<div class="am-panel-hd">我的钱包</div>
+					<div class="am-text-center">
+						<img
+							class="am-img-thumbnail am-circle am-extend-title"
+							src="${ctxPath}/images/title.jpeg"
+							alt="用户头像">
+					</div>
+					<div class="am-container am-margin-top am-margin-top-sm">
+						<ul class="am-nav am-nav-pills am-nav-justify">
+							<li><a
+								href="#"
+								class="am-btn am-btn-secondary am-text-sm"><span
+									class="am-icon-database"></span>&nbsp;交易</a></li>
+							<li><a
+								href="#"
+								class="am-btn am-btn-secondary am-text-sm"><span
+									class="am-icon-comment"></span>&nbsp;消息</a></li>
+							<li><a
+								href="#"
+								class="am-btn am-btn-secondary am-text-sm"><span
+									class="am-icon-user"></span>&nbsp;账号</a></li>
+						</ul>
+						<div class="am-mg am-margin-top am-margin-top-sm">
+							<ul class="am-list">
+								<li>
+									<div class="am-panel am-panel-secondary">
+										<div class="am-panel-hd">最近消费</div>
+										<div class="am-panel-bd">
+											<div  id="walletUserRecentChart"  class="am-extend-nav-report">
+											
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="am-panel am-panel-secondary">
+										<div class="am-panel-hd">最近收入</div>
+										<div class="am-panel-bd">
+											<div id="walletUserRecentRechargeChart" class="am-extend-nav-report">
+											
+											</div>
+										</div>
+									</div>
+								</li>
+								<li><button class="am-btn am-btn-danger am-btn-block">
+										<span class="am-icon-sign-out"></span>&nbsp;退出钱包
+									</button></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="am-u-md-9">
+				<div
+					class="am-tabs"
+					data-am-tabs="{noSwipe: 1}"
+					id="doc-tab-demo-1">
+					<ul class="am-tabs-nav am-nav am-nav-tabs">
+						<li class="am-active"><a href="javascript: void(0)">我的资产</a></li>
+					</ul>
+					<div class="am-tabs-bd">
+						<div class="am-tab-panel am-active">
+							<div
+								class="am-slider am-slider-default am-slider-carousel am-extend-slider-style"
+								data-am-flexslider="{itemWidth: 312,itemMargin: 4, slideshow: false,controlNav: false}">
+								<ul class="am-slides">
+									<li><div class="am-panel am-panel-default">
+											<div class="am-panel-hd am-text-center">当前余额</div>
+											<div class="am-panel-bd">
+												<div
+													class="am-extend-list-header am-text-center am-text-middle">
+													<strong>20000.00</strong><br />（单位：元）
+												</div>
+												<div
+													class="am-text-center am-margin-vertical am-margin-vertical-sm">
+													<a
+														href="#"
+														class="am-btn am-btn-secondary am-btn-block">充值</a>
+												</div>
+												<div class="am-text-center">
+													<a href="#">提现</a>
+												</div>
+											</div>
+										</div></li>
+									<li><div class="am-panel am-panel-default">
+											<div class="am-panel-hd am-text-center">红包</div>
+											<div class="am-panel-bd">
+												<div
+													class="am-extend-list-header am-text-center am-text-middle">
+													<strong>20</strong><br />（单位：张）
+												</div>
+												<div
+													class="am-text-center am-margin-vertical am-margin-vertical-sm">
+													<a
+														href="#"
+														class="am-btn am-btn-secondary am-btn-block">查看详情</a>
+												</div>
+											</div>
+										</div></li>
+									<li><div class="am-panel am-panel-default">
+											<div class="am-panel-hd">VIP卡</div>
+											<div class="am-panel-bd">
+
+												<div
+													class="am-extend-list-header am-text-center am-text-middle">
+													<strong>20</strong><br />（单位：张）
+												</div>
+												<div
+													class="am-text-center am-margin-vertical am-margin-vertical-sm">
+													<a
+														href="#"
+														class="am-btn am-btn-secondary am-btn-block">查看详情</a>
+												</div>
+											</div>
+										</div></li>
+									<li><div class="am-panel am-panel-default">
+											<div class="am-panel-hd">优惠券</div>
+											<div class="am-panel-bd">
+												<div
+													class="am-extend-list-header am-text-center am-text-middle">
+													<strong>20</strong><br />（单位：张）
+												</div>
+												<div
+													class="am-text-center am-margin-vertical am-margin-vertical-sm">
+													<a
+														href="#"
+														class="am-btn am-btn-secondary am-btn-block">查看详情</a>
+												</div>
+											</div>
+										</div></li>
+									<li><div class="am-panel am-panel-default">
+											<div class="am-panel-hd">百洋币</div>
+											<div class="am-panel-bd">
+												<div
+													class="am-extend-list-header am-text-center am-text-middle">
+													<strong>20</strong><br />（单位：个）
+												</div>
+												<div
+													class="am-text-center am-margin-vertical am-margin-vertical-sm">
+													<a
+														href="#"
+														class="am-btn am-btn-secondary am-btn-block">查看详情</a>
+												</div>
+											</div>
+										</div></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="am-panel am-panel-default am-margin-vertical am-margin-vertical-sm">
+					<div class="am-panel-hd">交易一览</div>
+					<div
+						id="walletTradeCharts"
+						class="am-panel-bd"></div>
+
+				</div>
+			</div>
+
+		</div>
+		<div class="am-g">
+			<div class="am-u-md-12">
+				<!-- 交易详情table -->
+				<div class="am-panel am-panel-default">
+					<div class="am-panel-hd">交易记录</div>
+					<div class="am-panel-bd">
+						<table
+							id="walletTradetableList"
+							class="am-table am-table-bordered am-table-striped am-text-nowrap">
+							<thead>
+								<tr>
+									<th>交易时间</th>
+									<th>交易描述</th>
+									<th>交易金额</th>
+									<th>交易状态</th>
+									<th>交易操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>2015-06-21 25:12:45</td>
+									<td>账户充值</td>
+									<td>+12.00</td>
+									<td>充值成功</td>
+									<td>
+										<div
+											class="am-dropdown"
+											data-am-dropdown>
+											<button
+												class="am-btn am-btn-primary am-dropdown-toggle"
+												data-am-dropdown-toggle>
+												查看详情 <span class="am-icon-caret-down"></span>
+											</button>
+											<ul class="am-dropdown-content">
+												<li><a href="#">交易详情</a></li>
+												<li><a href="#">交易备注</a></li>
+												<li><a href="#">删除交易</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2015-06-21 25:12:45</td>
+									<td>账户充值</td>
+									<td>+12.00</td>
+									<td>充值成功</td>
+									<td>
+										<div
+											class="am-dropdown"
+											data-am-dropdown>
+											<button
+												class="am-btn am-btn-primary am-dropdown-toggle"
+												data-am-dropdown-toggle>
+												查看详情 <span class="am-icon-caret-down"></span>
+											</button>
+											<ul class="am-dropdown-content">
+												<li><a href="#">交易详情</a></li>
+												<li><a href="#">交易备注</a></li>
+												<li><a href="#">删除交易</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2015-06-21 25:12:45</td>
+									<td>账户充值</td>
+									<td>+12.00</td>
+									<td>充值成功</td>
+									<td>
+										<div
+											class="am-dropdown"
+											data-am-dropdown>
+											<button
+												class="am-btn am-btn-primary am-dropdown-toggle"
+												data-am-dropdown-toggle>
+												查看详情 <span class="am-icon-caret-down"></span>
+											</button>
+											<ul class="am-dropdown-content">
+												<li><a href="#">交易详情</a></li>
+												<li><a href="#">交易备注</a></li>
+												<li><a href="#">删除交易</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2015-06-21 25:12:45</td>
+									<td>账户充值</td>
+									<td>+12.00</td>
+									<td>充值成功</td>
+									<td>
+										<div
+											class="am-dropdown"
+											data-am-dropdown>
+											<button
+												class="am-btn am-btn-primary am-dropdown-toggle"
+												data-am-dropdown-toggle>
+												查看详情 <span class="am-icon-caret-down"></span>
+											</button>
+											<ul class="am-dropdown-content">
+												<li><a href="#">交易详情</a></li>
+												<li><a href="#">交易备注</a></li>
+												<li><a href="#">删除交易</a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="am-panel-footer">
+						<ul class="am-pagination am-pagination-centered">
+							<li class="am-disabled"><a href="#">&laquo;</a></li>
+							<li class="am-active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 钱包底部页面 -->
+	<footer
+		data-am-widget="footer"
+		class="am-footer am-footer-default"
+		data-am-footer="{  }">
+		<div class="am-footer-switch">
+			<span
+				class="am-footer-ysp"
+				data-rel="mobile"
+				data-am-modal="{target: '#am-switch-mode'}"> 电脑版 </span> <span
+				class="am-footer-divider"> | </span> <a
+				id="godesktop"
+				data-rel="desktop"
+				class="am-footer-desktop"
+				href="javascript:"> 手机版</a>
+		</div>
+		<div class="am-footer-miscs ">
+			<p>
+				由 <a
+					href="http://www.yunshipei.com/"
+					title="百洋健康科技"
+					target="_blank"
+					class="">百洋健康科技</a> 提供技术支持
+			</p>
+			<p>CopyRight©2014 AllMobilize Inc.</p>
+			<p>青ICP备13033158</p>
+		</div>
+	</footer>
+
+	<div
+		id="am-footer-modal"
+		class="am-modal am-modal-no-btn am-switch-mode-m am-switch-mode-m-default">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd am-modal-footer-hd">
+				<a
+					href="javascript:void(0)"
+					data-dismiss="modal"
+					class="am-close am-close-spin "
+					data-am-modal-close>&times;</a>
+			</div>
+			<div class="am-modal-bd">
+				您正在浏览的是 <span class="am-switch-mode-owner"> 云适配 </span> <span
+					class="am-switch-mode-slogan"> 为您当前手机订制的移动网站。 </span>
+			</div>
+		</div>
+	</div>
+	<!-- 引入页面的js -->
+	<script
+		type="text/javascript"
+		src="${ctxPath}/js/echarts-all.js"></script>
+	<script
+		type="text/javascript"
+		src="${ctxPath}/js/templates/index.js"></script>
+
+</body>
+</html>

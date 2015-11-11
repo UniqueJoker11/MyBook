@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 配置扫描包 -->
+	<context:component-scan
+		base-package="colin.profile.opensource.system.aspect,colin.profile.opensource.system.service,colin.profile.opensource.system.core.**,colin.profile.opensource.system.bean"></context:component-scan>
+	<!--配置上下文注解 -->
+	<context:annotation-config />
+	<!-- 切面配置 -->
+	<aop:aspectj-autoproxy />
+	<!-- transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 开启事务配置 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<property name="initialSize">
+			<value>1</value>
+		</property>
+		<property name="maxActive">
+			<value>30</value>
+		</property>
+	</bean>
+
+	<bean id="sqlManager" class="org.beetl.sql.ext.spring.SpringBeetlSql">
+		<property name="cs">
+			<bean class="org.beetl.sql.ext.spring.SpringConnectionSource">
+				<property name="masterSource" ref="dataSource"></property>
+			</bean>
+		</property>
+		<property name="dbStyle">
+			<bean class="org.beetl.sql.core.db.MySqlStyle">
+			</bean>
+		</property>
+		<property name="sqlLoader">
+			<bean class="org.beetl.sql.core.ClasspathLoader">
+				<property name="sqlRoot" value="/sql"></property>
+			</bean>
+		</property>
+		<property name="nc">
+			<bean class="org.beetl.sql.core.HumpNameConversion">
+			</bean>
+		</property>
+		<property name="interceptors">
+			<list>
+				<bean class="org.beetl.sql.ext.DebugInterceptor"></bean>
+			</list>
+		</property>
+	</bean>
+	<tx:advice id="taAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="fetch*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" />
+			<tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 引入shiro配置 -->
+	<import resource="spring-shiro.xml" />
+</beans>

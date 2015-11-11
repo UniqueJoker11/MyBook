@@ -1,0 +1,11 @@
+package ${dao.packageName};
+
+import org.springframework.data.repository.${dao.extendClass};
+import org.springframework.stereotype.Repository;
+
+import colin.profile.opensource.system.core.pojo.${dao.entityClass};
+
+@Repository
+public interface ${dao.className} extends ${dao.extendClass}<${dao.entityClass},${dao.pkType}>{
+
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean name="test1">
+        <person gendar="男" address="测试地址"></person>
+        <person gendar="女" address="测试地址2"></person>
+    </bean>
+</beans>

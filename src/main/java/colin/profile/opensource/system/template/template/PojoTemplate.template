@@ -1,0 +1,28 @@
+package ${pojo.packageName};
+
+import org.beetl.sql.core.annotatoin.AssignID;
+import org.beetl.sql.core.annotatoin.Table;
+
+
+@Table(name="${pojo.tableName}")
+public class ${pojo.className}{
+<%for(field in pojo.fileldList){%>
+
+/**
+* ${field.comment}
+*/
+
+private ${field.type} ${field.name};
+<%}%>
+<%for(field in pojo.fileldList){%>
+public void set${strutil.toUpperCase(strutil.subStringTo(field.name,0,1))+strutil.subString(field.name,1)}(${field.type} ${field.name}){
+this.${field.name}=${field.name};
+}
+<%if(field.isPk!false){%>
+@AssignID
+<%}%>
+public ${field.type} get${strutil.toUpperCase(strutil.subStringTo(field.name,0,1))+strutil.subString(field.name,1)}(){
+return this.${field.name};
+}
+<%}%>
+}
