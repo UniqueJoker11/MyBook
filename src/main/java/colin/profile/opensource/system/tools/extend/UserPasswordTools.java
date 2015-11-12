@@ -11,8 +11,8 @@ import colin.profile.opensource.system.core.pojo.BkUserEntity;
 @Component
 public class UserPasswordTools {
 
-	private String algorithmName = "md5";// 加密方式
-	private final int hashIterations = 2;// 加密迭代次数
+	private final static String algorithmName = "md5";// 加密方式
+	private final static int hashIterations = 2;// 加密迭代次数
 
 	/**
 	 * 
@@ -22,14 +22,14 @@ public class UserPasswordTools {
 	 * @return 
 	 * @Exception 异常对象
 	 */
-	public BkUserEntity encryptUserEntity(BkUserEntity userEntity) {
+	public static BkUserEntity encryptUserEntity(BkUserEntity userEntity) {
 		RandomNumberGenerator numberGenerator = new SecureRandomNumberGenerator();
 		String key_salt = numberGenerator.nextBytes().toHex();
-		userEntity.setUser_pw_salt(key_salt);
+		userEntity.setUserPwSalt(key_salt);
 		// 设定新密码
-		userEntity.setUser_password(new SimpleHash(algorithmName, userEntity
-				.getUser_password(), ByteSource.Util.bytes(userEntity
-				.getUser_pw_salt()), hashIterations).toHex());
+		userEntity.setUserPassword(new SimpleHash(algorithmName, userEntity
+				.getUserPassword(), ByteSource.Util.bytes(userEntity
+				.getUserPwSalt()), hashIterations).toHex());
 		return userEntity;
 	}
 }

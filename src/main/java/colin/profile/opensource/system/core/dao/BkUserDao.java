@@ -3,6 +3,7 @@ package colin.profile.opensource.system.core.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.beetl.sql.core.SQLManager;
 import org.springframework.stereotype.Repository;
 
 import colin.profile.opensource.system.core.pojo.BkUserEntity;
@@ -49,6 +50,9 @@ public class BkUserDao extends BkBaseDao {
      * @return
      */
     public BkUserEntity fetchBkUserInfoByUsername(Map<String,Object> params){
-        return super.initSqlManager().select(SQLFILE+"select",BkUserEntity.class,params).get(0);
+        SQLManager sqlManager=super.initSqlManager();
+        List<BkUserEntity> bkUserEntities=sqlManager.all(BkUserEntity.class);
+        List<BkUserEntity> userEntityList=sqlManager.select(SQLFILE + "select",BkUserEntity.class,params);
+        return super.initSqlManager().selectSingle(SQLFILE + "select", params, BkUserEntity.class);
     }
 }

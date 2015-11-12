@@ -1,42 +1,37 @@
 package colin.profile.opensource.system.controller;
 
-import javax.security.auth.Subject;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
+import colin.profile.opensource.system.bean.ResultCommonBean;
+import colin.profile.opensource.system.bean.UserBean;
+import colin.profile.opensource.system.core.pojo.BkUserEntity;
+import colin.profile.opensource.system.service.BkUserService;
+import colin.profile.opensource.system.tools.extend.UserPasswordTools;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import colin.profile.opensource.system.bean.UserBean;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * Created by DELL on 2015/11/12.
+ */
 @Controller
-@Scope("request")
-@RequestMapping("/pay")
-public class TemplateManageController {
-
-    private final Logger logger = Logger.getLogger(TemplateManageController.class.getName());
-
-    /**
-     * 方法描述：显示登陆页面 注意事项：
-     *
-     * @return
-     * @Exception 异常对象
-     */
-    @RequestMapping(value = "login.html", method = RequestMethod.GET)
-    public String showLoginHtml() {
-        return "login";
-    }
+public class UserManageController {
+    private final Logger logger = Logger.getLogger(UserManageController.class.getName());
+    @Autowired
+    private BkUserService bkUserService;
 
     /**
      * 方法描述：验证用户登录 注意事项：
@@ -63,15 +58,36 @@ public class TemplateManageController {
                 return "login";
             } catch (AuthenticationException e) {
                 logger.info("用户身份信息不正确");
+                e.printStackTrace();
                 return "login";
             }
             return "index";
         }
     }
 
-    @RequestMapping(value = "index.html", method = RequestMethod.GET)
-    public String showIndexPage() {
-        //TODO 需要添加用户是否登录的校验
-        return "index";
+    /**
+     * 注册用户信息
+     *
+     * @param userBean
+     * @param bindingResult
+     * @return
+     */
+    public Object registerUserInfo(@Valid UserBean userBean, BindingResult bindingResult) {
+        ResultCommonBean commonBean = new ResultCommonBean();
+        if (bindingResult.hasErrors()) {
+            StringBuilder errorMsg = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                errorMsg.append(fieldError.getDefaultMessage()).append(",");
+            }
+            commonBean.setInfoMsg(errorMsg.substring(0, errorMsg.lastIndexOf(",")));
+            commonBean.setSuccess(false);
+        } else {
+            BkUserEntity bkUserEntity = new BkUserEntity();
+            bkUserEntity.setUserName(userBean.getUsername());
+            bkUserEntity.setUserPassword(userBean.getPassword());
+            this.bkUserService.insertUserInfo(UserPasswordTools.encryptUserEntity(bkUserEntity));
+            commonBean.setSuccess(true);
+        }
+        return commonBean;
     }
 }

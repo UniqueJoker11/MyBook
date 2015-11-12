@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<%include("../common/header.html"){}%>
+<title>用户注册</title>
+</head>
+<body>
+<header class="am-topbar am-topbar-inverse"> </header>
+<div class="am-container">
+    <div class="am-g">
+        <div class="am-u-lg-6 am-u-lg-offset-3">
+            <form
+                    class="am-form"
+                    id="userWalletLogin" action="${ctxPath}/pay/user_login.action" method="post">
+                <fieldset>
+                    <legend>测试登录</legend>
+                    <div class="am-form-group">
+                        <label for="username">用户名</label> <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            name="username"
+                            placeholder="请输入手机号"
+                            required
+                            data-validation-message="手机号码格式不正确">
+                    </div>
+                    <div class="am-form-group">
+                        <label for="password">密码</label> <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            placeholder="请输入登陆密码"
+                            minlength="6"
+                            maxlength="15"
+                            data-validation-message="密码格式不正确">
+                    </div>
+                    <div class="am-form-group">
+                        <label for="password">确认密码</label> <input
+                            type="password"
+                            class="form-control"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="请输入登陆密码"
+                            minlength="6"
+                            maxlength="15"
+                            data-validation-message="密码格式不正确">
+                    </div>
+                    <input
+                            type="hidden"
+                            name="rememberMe"
+                            value="true" />
+                    <div class="am-form-group">
+                        <button
+                                type="submit"
+                                class="am-btn am-btn-primary am-btn-block">
+                            <span class="am-icon-sign-in"></span>&nbsp;登录
+                        </button>
+                    </div>
+                    <div class="am-form-grop">
+                        <a
+                                class="am-fl"
+                                href="">没有账号？立即注册</a> <a
+                            class="am-fr"
+                            href="">忘记密码</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 钱包底部页面 -->
+<footer
+        data-am-widget="footer"
+        class="am-footer am-footer-default am-topbar-fixed-bottom"
+        data-am-footer="{  }">
+    <div class="am-footer-switch">
+			<span
+                    class="am-footer-ysp"
+                    data-rel="mobile"
+                    data-am-modal="{target: '#am-switch-mode'}"> 电脑版 </span> <span
+            class="am-footer-divider"> | </span> <a
+            id="godesktop"
+            data-rel="desktop"
+            class="am-footer-desktop"
+            href="javascript:"> 手机版</a>
+    </div>
+    <div class="am-footer-miscs ">
+        <p>
+            由 <a
+                href="http://www.yunshipei.com/"
+                title="百洋健康科技"
+                target="_blank"
+                class="">百洋健康科技</a> 提供技术支持
+        </p>
+        <p>CopyRight©2014 AllMobilize Inc.</p>
+        <p>青ICP备13033158</p>
+    </div>
+</footer>
+
+<div
+        id="am-footer-modal"
+        class="am-modal am-modal-no-btn am-switch-mode-m am-switch-mode-m-default">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd am-modal-footer-hd">
+            <a
+                    href="javascript:void(0)"
+                    data-dismiss="modal"
+                    class="am-close am-close-spin "
+                    data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            您正在浏览的是 <span class="am-switch-mode-owner"> 云适配 </span> <span
+                class="am-switch-mode-slogan"> 为您当前手机订制的移动网站。 </span>
+        </div>
+    </div>
+</div>
+<!-- 引入页面js -->
+<!--<script
+    type="text/javascript"
+    src="${ctxPath}/js/templates/login.js"></script>-->
+</body>
+</html>

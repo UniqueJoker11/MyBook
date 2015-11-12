@@ -19,12 +19,11 @@ private BkUserService userService;
        String username=authenticationToken.getPrincipal().toString();//用户名
         String password=String.valueOf((char[])authenticationToken.getCredentials());//密码
         BkUserEntity bkUserEntity=userService.queryUserInfoByUserName(username);
-
         if (bkUserEntity==null){
             throw new UnknownAccountException("用户不存在！");
         }else{
-            String pw_salt=bkUserEntity.getUser_pw_salt();
-            if(bkUserEntity.getUser_password().equals(password)){
+            String pw_salt=bkUserEntity.getUserPwSalt();
+            if(bkUserEntity.getUserPassword().equals(password)){
                 return new SimpleAuthenticationInfo(username,password,this.getName());
             }else{
                 throw new IncorrectCredentialsException("用户名或密码错误！");

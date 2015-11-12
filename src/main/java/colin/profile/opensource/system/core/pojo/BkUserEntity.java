@@ -10,140 +10,139 @@ public class BkUserEntity {
 	 * 用户id
 	 */
 
-	private String user_id;
+	private String userId;
 
 	/**
 	 * 用户名
 	 */
 
-	private String user_name;
+	private String userName;
 
 	/**
 	 * 用户头像
 	 */
 
-	private String user_head;
+	private String userHead;
 
 	/**
 	 * 用户密码
 	 */
 
-	private String user_password;
+	private String userPassword;
 
 	/**
 	 * 用户加密盐
 	 */
 
-	private String user_pw_salt;
+	private String userPwSalt;
 
 	/**
 	 * 用户别称
 	 */
 
-	private String user_callname;
+	private String userCallname;
 
 	/**
 	 * 用户email
 	 */
 
-	private String user_email;
+	private String userEmail;
 
 	/**
 	 * 用户手机
 	 */
 
-	private String user_phone;
+	private String userPhone;
 
 	/**
 	 * 用户创建时间
 	 */
 
-	private String user_createtime;
+	private String userCreatetime;
 
 	/**
 	 * 用户登录时间
 	 */
 
-	private String user_logintime;
+	private String userLogintime;
 
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	@AssignID
-	public String getUser_id() {
-		return this.user_id;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public String getUser_name() {
-		return this.user_name;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setUser_head(String user_head) {
-		this.user_head = user_head;
-	}
+    public String getUserHead() {
+        return userHead;
+    }
 
-	public String getUser_head() {
-		return this.user_head;
-	}
+    public void setUserHead(String userHead) {
+        this.userHead = userHead;
+    }
 
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
-	}
+    public String getUserPassword() {
+        return userPassword;
+    }
 
-	public String getUser_password() {
-		return this.user_password;
-	}
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
 
-	public void setUser_pw_salt(String user_pw_salt) {
-		this.user_pw_salt = user_pw_salt;
-	}
+    public String getUserPwSalt() {
+        return userPwSalt;
+    }
 
-	public String getUser_pw_salt() {
-		return this.user_pw_salt;
-	}
+    public void setUserPwSalt(String userPwSalt) {
+        this.userPwSalt = userPwSalt;
+    }
 
-	public void setUser_callname(String user_callname) {
-		this.user_callname = user_callname;
-	}
+    public String getUserCallname() {
+        return userCallname;
+    }
 
-	public String getUser_callname() {
-		return this.user_callname;
-	}
+    public void setUserCallname(String userCallname) {
+        this.userCallname = userCallname;
+    }
 
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
-	}
+    public String getUserEmail() {
+        return userEmail;
+    }
 
-	public String getUser_email() {
-		return this.user_email;
-	}
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
-	public void setUser_phone(String user_phone) {
-		this.user_phone = user_phone;
-	}
+    public String getUserPhone() {
+        return userPhone;
+    }
 
-	public String getUser_phone() {
-		return this.user_phone;
-	}
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
 
-	public void setUser_createtime(String user_createtime) {
-		this.user_createtime = user_createtime;
-	}
+    public String getUserCreatetime() {
+        return userCreatetime;
+    }
 
-	public String getUser_createtime() {
-		return this.user_createtime;
-	}
+    public void setUserCreatetime(String userCreatetime) {
+        this.userCreatetime = userCreatetime;
+    }
 
-	public void setUser_logintime(String user_logintime) {
-		this.user_logintime = user_logintime;
-	}
+    public String getUserLogintime() {
+        return userLogintime;
+    }
 
-	public String getUser_logintime() {
-		return this.user_logintime;
-	}
+    public void setUserLogintime(String userLogintime) {
+        this.userLogintime = userLogintime;
+    }
 }

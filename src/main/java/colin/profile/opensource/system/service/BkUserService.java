@@ -26,4 +26,13 @@ public class BkUserService {
         params.put("username",username);
         return userDao.fetchBkUserInfoByUsername(params);
     }
+
+    /**
+     * 新增用户
+     * @param bkUserEntity
+     * @return
+     */
+    public void insertUserInfo(BkUserEntity bkUserEntity){
+        this.userDao.saveBkUserInfo(bkUserEntity);
+    }
 }
