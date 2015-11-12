@@ -10,7 +10,7 @@ import colin.profile.opensource.system.core.pojo.BkUserEntity;
 @Repository
 public class BkUserDao extends BkBaseDao {
 
-    private static final String SQLFILE="bkuser";
+    private static final String SQLFILE="bkuser.";
 	/**
 	 * 
 	 * 方法描述：保存用户对象 注意事项：
@@ -49,6 +49,6 @@ public class BkUserDao extends BkBaseDao {
      * @return
      */
     public BkUserEntity fetchBkUserInfoByUsername(Map<String,Object> params){
-        return super.initSqlManager().selectSingle(SQLFILE+"selectByUsername",params,BkUserEntity.class);
+        return super.initSqlManager().select(SQLFILE+"select",BkUserEntity.class,params).get(0);
     }
 }

@@ -67,11 +67,11 @@
 		</property>
 		<property name="sqlLoader">
 			<bean class="org.beetl.sql.core.ClasspathLoader">
-				<property name="sqlRoot" value="/sql"></property>
+				<property name="sqlRoot" value="/sql/mysql"></property>
 			</bean>
 		</property>
 		<property name="nc">
-			<bean class="org.beetl.sql.core.HumpNameConversion">
+			<bean class="org.beetl.sql.core.UnderlinedNameConversion">
 			</bean>
 		</property>
 		<property name="interceptors">
@@ -80,7 +80,7 @@
 			</list>
 		</property>
 	</bean>
-	<tx:advice id="taAdvice" transaction-manager="transactionManager">
+	<tx:advice id="taAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="fetch*" propagation="REQUIRED" isolation="READ_COMMITTED" />
 			<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT" />

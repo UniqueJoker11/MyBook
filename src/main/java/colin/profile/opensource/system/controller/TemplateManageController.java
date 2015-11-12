@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -24,7 +25,8 @@ import java.util.logging.Logger;
 @RequestMapping("/pay")
 public class TemplateManageController {
 
-    private final Logger logger= Logger.getLogger(TemplateManageController.class.getName());
+    private final Logger logger = Logger.getLogger(TemplateManageController.class.getName());
+
     /**
      * 方法描述：显示登陆页面 注意事项：
      *
@@ -51,13 +53,16 @@ public class TemplateManageController {
         } else {
             //验证用户是否在数据库中存在
             org.apache.shiro.subject.Subject userSubject = SecurityUtils.getSubject();
-            try{
-            userSubject.login(new UsernamePasswordToken(userBean.getUsername(), userBean.getPassword(),true));}
-            catch(UnknownAccountException e){
+            try {
+                userSubject.login(new UsernamePasswordToken(userBean.getUsername(), userBean.getPassword(), true));
+            } catch (UnknownAccountException e) {
                 logger.info("不存在的用户");
                 return "login";
-            }catch (IncorrectCredentialsException e){
+            } catch (IncorrectCredentialsException e) {
                 logger.info("用户名或密码错误");
+                return "login";
+            } catch (AuthenticationException e) {
+                logger.info("用户身份信息不正确");
                 return "login";
             }
             return "index";

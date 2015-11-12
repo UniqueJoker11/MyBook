@@ -17,7 +17,7 @@ private BkUserService userService;
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
        String username=authenticationToken.getPrincipal().toString();//用户名
-        String password=authenticationToken.getCredentials().toString();//密码
+        String password=String.valueOf((char[])authenticationToken.getCredentials());//密码
         BkUserEntity bkUserEntity=userService.queryUserInfoByUserName(username);
 
         if (bkUserEntity==null){
