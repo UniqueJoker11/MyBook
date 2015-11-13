@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserBean {
-	@NotEmpty(message = "手机号不能为空！")
-	@Pattern(regexp = "^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$", message = "手机格式不正确")
+	@NotEmpty(message = "用户名不能为空！")
 	private String username;
 	@NotEmpty(message = "密码不能为空！")
 	@Size(max = 15, min = 6, message = "密码长度在6~10位之间")
