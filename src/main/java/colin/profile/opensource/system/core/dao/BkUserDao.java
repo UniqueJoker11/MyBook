@@ -51,8 +51,6 @@ public class BkUserDao extends BkBaseDao {
      */
     public BkUserEntity fetchBkUserInfoByUsername(Map<String,Object> params){
         SQLManager sqlManager=super.initSqlManager();
-        List<BkUserEntity> bkUserEntities=sqlManager.all(BkUserEntity.class);
-        List<BkUserEntity> userEntityList=sqlManager.select(SQLFILE + "select",BkUserEntity.class,params);
         return super.initSqlManager().selectSingle(SQLFILE + "select", params, BkUserEntity.class);
     }
 }

@@ -46,32 +46,32 @@ public class UserManageController {
     @RequestMapping(value = "user_signin.action", method = RequestMethod.POST)
     public String validateUserLogin(HttpServletRequest request,
                                     @Valid UserBean userBean, BindingResult errorResult) {
+
         if (errorResult.hasErrors()) {
             request.setAttribute("hasError", true);
-            return "manage/signin";
+            return "/manage/signin";
         } else {
-            //验证用户是否在数据库中存在
+            //认证过后，登陆首页，未认证继续验证
             org.apache.shiro.subject.Subject userSubject = SecurityUtils.getSubject();
-            if(userSubject.isAuthenticated()){
+            if (!userSubject.isAuthenticated()) {
+                //验证登陆
                 try {
                     userSubject.login(new UsernamePasswordToken(userBean.getUsername(), userBean.getPassword(), true));
+                    return "/manage/manage";
                 } catch (UnknownAccountException e) {
                     logger.info("不存在的用户");
-                    return "manage/signin";
+                    return "/manage/signin";
                 } catch (IncorrectCredentialsException e) {
                     logger.info("用户名或密码错误");
-                    return "manage/signin";
+                    return "/manage/signin";
                 } catch (AuthenticationException e) {
                     logger.info("用户身份信息不正确");
                     e.printStackTrace();
-                    return "manage/signin";
+                    return "/manage/signin";
                 }
-                return "manage/manage";
-            }else{
-                logger.info("用户身份信息不正确");
-                return "manage/signin";
+            } else {
+                return "/manage/manage";
             }
-
         }
     }
 
@@ -82,7 +82,7 @@ public class UserManageController {
      * @param bindingResult
      * @return
      */
-    @RequestMapping(value = "user_register.action",method = RequestMethod.POST)
+    @RequestMapping(value = "user_register.action", method = RequestMethod.POST)
     public Object registerUserInfo(@Valid UserBean userBean, BindingResult bindingResult) {
         ResultCommonBean commonBean = new ResultCommonBean();
         if (bindingResult.hasErrors()) {

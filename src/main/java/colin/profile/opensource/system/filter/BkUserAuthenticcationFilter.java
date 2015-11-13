@@ -25,19 +25,26 @@ public class BkUserAuthenticcationFilter extends FormAuthenticationFilter {
             String e1 = "获取不到用户名和密码信息";
             throw new IllegalStateException(e1);
         } else {
-            try {
-                BkUserEntity userEntity = bkUserService.queryUserInfoByUserName(this.getUsernameParam());
-                if (userEntity == null) {
-                    return this.onLoginFailure(token, new UnknownAccountException("用户名不存在"), request, response);
-                } else if (!userEntity.getUserPassword().equals(this.getPasswordParam())) {
-                    return this.onLoginFailure(token, new IncorrectCredentialsException("用户名密码错误"), request, response);
-                } else {
-                    Subject e = this.getSubject(request, response);
+            BkUserEntity userEntity = bkUserService.queryUserInfoByUserName(token.getPrincipal().toString());
+            if (userEntity == null) {
+                return this.onLoginFailure(token, new UnknownAccountException("用户名不存在"), request, response);
+            } else if (!userEntity.getUserPassword().equals(String.valueOf((char[]) token.getCredentials()))) {
+                return this.onLoginFailure(token, new IncorrectCredentialsException("用户名密码错误"), request, response);
+            } else {
+                Subject e = this.getSubject(request, response);
+                try {
                     e.login(token);
                     return this.onLoginSuccess(token, e, request, response);
+                } catch (UnknownAccountException e1) {
+                    //账户不存在
+                    return this.onLoginFailure(token, e1, request, response);
+                } catch (IncorrectCredentialsException e2) {
+                    //密码错误
+                    return this.onLoginFailure(token, e2, request, response);
+                } catch (AuthenticationException e3) {
+                    //用户验证错误
+                    return this.onLoginFailure(token, e3, request, response);
                 }
-            } catch (AuthenticationException var5) {
-                return this.onLoginFailure(token, var5, request, response);
             }
         }
     }
